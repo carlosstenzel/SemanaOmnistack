@@ -1,9 +1,10 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 const routes = require('./routes');
 
-
+const server = express();
 
 mongoose.connect(
     process.env.URL_BD_MONGO,
@@ -12,8 +13,8 @@ mongoose.connect(
     }
 );
 
-const server = express();
 
+server.use(cors());
 server.use(express.json());
 server.use(routes);
 
